@@ -44,7 +44,7 @@ face_recognition/
 
 ```bash
 # 1️⃣ Clone the repository
-git clone https://github.com/rajjamwal/face_recognition.git
+git clone https://github.com/rajjamwal/Face-Recognition-System.git
 cd face_recognition
 
 # 2️⃣ Install dependencies
