@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Face Verification</title>
+    <script>
+        let videoStream;
+
+        function startCamera() {
+            const video = document.getElementById("video");
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    video.srcObject = stream;
+                    videoStream = stream;
+                });
+        }
+
+        function captureImage() {
+            const canvas = document.getElementById("canvas");
+            const video = document.getElementById("video");
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(video, 0, 0);
+            const dataURL = canvas.toDataURL("image/jpeg");
+
+            document.getElementById("captured_image").value = dataURL;
+            document.getElementById("form").submit();
+        }
+    </script>
+</head>
+<body onload="startCamera()">
+    <h2>🎓 Face Verification Attendance System</h2>
+
+   <form id="form" method="POST">
+    <video id="video" autoplay playsinline width="300"></video><br>
+    <canvas id="canvas" style="display: none;"></canvas>
+    <input type="hidden" name="captured_image" id="captured_image">
+    <button type="button" onclick="captureImage()">📸 Capture & Recognize</button>
+</form>
+
+   {% if status %}
+    <h3>{{ status }}</h3>
+    {% if image_path %}
+        <img src="/{{ image_path }}" alt="Captured Image" width="200">
+    {% endif %}
+{% endif %}
+</body>
+</html>
