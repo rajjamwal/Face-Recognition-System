@@ -1,4 +1,4 @@
-# Face Recognition Attendance System 
+# Face Recognition Attendance System
 
 This is a simple yet functional face recognition project that logs attendance based on detected faces.  
 It also includes a basic Flask web interface for face recognition.
@@ -12,45 +12,56 @@ It also includes a basic Flask web interface for face recognition.
 ✅ Simple Flask app to view logs on a browser
 
 ---
-![Description of image](images/demo.png)
 
+<p align="center">
+  <img src="images/demo.png" alt="Demo" width="500"/>
+</p>
+
+---
 
 ## Project Structure
+```bash
 face_recognition/
-│
 ├── images/                # images of interface
 │   └── demo.png
-├── database/              # Stores face images / embeddings
-├── static/                # Static files for Flask (CSS, JS, images)
+├── database/              # folders named by person with images inside
+├── static/                # static files for Flask (CSS, JS, images)
 ├── templates/             # HTML templates for Flask
 │
-├── main.py                # Main script to run face recognition & attendance
-├── utils.py               # Helper functions
-├── embeddings.pkl         # Pickled face embeddings database
-├── attendance_log.txt     # Text log of attendance
+├── main.py                # main script to run face recognition & attendance
+├── utils.py               # helper functions
+├── embeddings.pkl         # pickled face embeddings database
+├── attendance_log.txt     # text log of attendance
 │
 ├── notebooks/
-│   ├── face.ipynb         # Jupyter notebook for initial face recognition tests
-│   ├── Flask.ipynb        # Notebook experimenting with Flask routes
-│   └── html.ipynb         # Notebook for HTML rendering experiments
+│   ├── face.ipynb         # initial face recognition tests
+│   ├── Flask.ipynb        # experimenting with Flask routes
+│   └── html.ipynb         # HTML rendering experiments
 │
-└── README.md              # This file
+└── README.md              # this file
+```
+## How to Run
 
- 
----
--> Your database contains indentity names as folder name and stores 5-6 images of the person in jpg/jpeg format inside the folder
--> The algorithm will compare the image embeddings in database with your current embeddings. 
--> Face is recognised with person's name on screen when minimum distance below threshold is found. =
--> Attendance is marked.
+```bash
+# 1️⃣ Clone the repository
+git clone https://github.com/rajjamwal/face_recognition.git
+cd face_recognition
 
-##  How to Run
+# 2️⃣ Install dependencies
+pip install -r requirements.txt
 
--> Clone the repository
-     ```bash
-     -git clone https://github.com/rajjamwal/face_recognition.git
-     -cd face_recognition
+# 3️⃣ Run the main face recognition script
+python main.py
 
--> Install necessary dependencies
--> run using script "python main.py" in terminal
+# 4️⃣ Open your browser at
+http://127.0.0.1:5000
 
-Navigate to http://127.0.0.1:5000 in your browser
+- Ensure your 'database/' folder contains subfolders named after each person,
+  with about 5-6 images (.jpg/.jpeg) of their face inside.
+
+- The algorithm compares embeddings from these folders
+  with the live webcam feed.
+
+- When a face is recognized (distance < threshold),
+  it displays the name on screen and marks attendance
+  in 'attendance_log.txt'.
